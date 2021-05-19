@@ -11,27 +11,27 @@
   <meta name="robots" content="index, follow">
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <title>Build and Tests - meteor</title>
+  <title>High Level API - meteor</title>
 <meta name="description" content="A Scala wrapper for AWS SDK 2 DynamoDB library using cats effect and fs2.">
-<link rel="canonical" href="https://d2a4u.github.io/meteor/docs/introduction/runtests/">
+<link rel="canonical" href="https://d2a4u.github.io/meteor/docs/api/highlevel/">
 <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Build and Tests">
-<meta name="twitter:description" content="Build The project requires Scala 2.12.12 or 2.13.3. To build the project locally:
-git@github.com:d2a4u/meteor.git cd ./meteor sbt compile Tests Local Unit tests can be run locally by sbt test. Integration tests run against docker container of DynamoDB Local. Hence, you will need docker installed and then to run integration tests:
-docker-compose up -d # make sure that the service is ready before running tests sbt it:test A docker-compose.yml is provided at the root of the project.">
+    <meta name="twitter:title" content="High Level API">
+<meta name="twitter:description" content="The actions API is considered low level because it is a 1-2-1 mapping to the Java AWS SDK calls. In contrast, high level API abstracts over DynamoDB tables which makes it simpler to work with. For example:
+Low level API action:
+import meteor._ import cats.effect.IO val client: Client[IO] = ??? val booksTable = PartitionKeyTable[Int](&#34;books-table&#34;, KeyDef[Int](&#34;id&#34;, DynamoDbType.N)) val lotr = Book(1, &#34;The Lord of the Rings&#34;) val get = client.get[Int, Book]( booksTable, 1, consistentRead = false ) High level API table:">
 
 <meta name="twitter:site" content="@">
 <meta name="twitter:creator" content="@">
 
-<meta property="og:title" content="Build and Tests">
-<meta property="og:description" content="Build The project requires Scala 2.12.12 or 2.13.3. To build the project locally:
-git@github.com:d2a4u/meteor.git cd ./meteor sbt compile Tests Local Unit tests can be run locally by sbt test. Integration tests run against docker container of DynamoDB Local. Hence, you will need docker installed and then to run integration tests:
-docker-compose up -d # make sure that the service is ready before running tests sbt it:test A docker-compose.yml is provided at the root of the project.">
+<meta property="og:title" content="High Level API">
+<meta property="og:description" content="The actions API is considered low level because it is a 1-2-1 mapping to the Java AWS SDK calls. In contrast, high level API abstracts over DynamoDB tables which makes it simpler to work with. For example:
+Low level API action:
+import meteor._ import cats.effect.IO val client: Client[IO] = ??? val booksTable = PartitionKeyTable[Int](&#34;books-table&#34;, KeyDef[Int](&#34;id&#34;, DynamoDbType.N)) val lotr = Book(1, &#34;The Lord of the Rings&#34;) val get = client.get[Int, Book]( booksTable, 1, consistentRead = false ) High level API table:">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://d2a4u.github.io/meteor/docs/introduction/runtests/">
+<meta property="og:url" content="https://d2a4u.github.io/meteor/docs/api/highlevel/">
 
-  <meta property="article:published_time" content="2021-01-27T00:39:02+00:00">
-  <meta property="article:modified_time" content="2021-01-27T00:39:02+00:00">
+  <meta property="article:published_time" content="2021-03-06T07:43:39+00:00">
+  <meta property="article:modified_time" content="2021-03-06T07:43:39+00:00">
   <meta property="og:site_name" content="meteor">
 
 <meta property="article:publisher" content="https://www.facebook.com/">
@@ -55,13 +55,13 @@ docker-compose up -d # make sure that the service is ready before running tests 
     },{
         "@type": "ListItem",
         "position":  3 ,
-        "name": "Introduction",
-        "item": "https:\/\/d2a4u.github.io\/meteor\/docs\/introduction\/"
+        "name": "Api",
+        "item": "https:\/\/d2a4u.github.io\/meteor\/docs\/api\/"
     },{
         "@type": "ListItem",
         "position":  4 ,
-        "name": "Runtests",
-        "item": "https:\/\/d2a4u.github.io\/meteor\/docs\/introduction\/runtests\/"
+        "name": "Highlevel",
+        "item": "https:\/\/d2a4u.github.io\/meteor\/docs\/api\/highlevel\/"
     }]
 }
 </script>
@@ -112,7 +112,7 @@ docker-compose up -d # make sure that the service is ready before running tests 
   <ul class="list-unstyled">
     <li><a class="docs-link" href="https://d2a4u.github.io/meteor/docs/introduction/getstarted/">Get Started</a></li>
     <li><a class="docs-link" href="https://d2a4u.github.io/meteor/docs/introduction/helloworld/">Hello World</a></li>
-    <li><a class="docs-link active" href="https://d2a4u.github.io/meteor/docs/introduction/runtests/">Build and Tests</a></li>
+    <li><a class="docs-link" href="https://d2a4u.github.io/meteor/docs/introduction/runtests/">Build and Tests</a></li>
     </ul>
   <h3>Codec</h3>
   <ul class="list-unstyled">
@@ -123,7 +123,7 @@ docker-compose up -d # make sure that the service is ready before running tests 
   <h3>API</h3>
   <ul class="list-unstyled">
     <li><a class="docs-link" href="https://d2a4u.github.io/meteor/docs/api/expression/">Expression</a></li>
-    <li><a class="docs-link" href="https://d2a4u.github.io/meteor/docs/api/highlevel/">High Level API</a></li>
+    <li><a class="docs-link active" href="https://d2a4u.github.io/meteor/docs/api/highlevel/">High Level API</a></li>
     <li><a class="docs-link" href="https://d2a4u.github.io/meteor/docs/api/itemactions/">Item Actions</a></li>
     <li><a class="docs-link" href="https://d2a4u.github.io/meteor/docs/api/batchactions/">Batch Actions</a></li>
     <li><a class="docs-link" href="https://d2a4u.github.io/meteor/docs/api/tableactions/">Table Actions</a></li>
@@ -136,56 +136,73 @@ docker-compose up -d # make sure that the service is ready before running tests 
     <h3>On this page</h3>
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#build">Build</a></li>
-    <li><a href="#tests">Tests</a>
-      <ul>
-        <li></li>
-      </ul>
-    </li>
-    <li><a href="#release">Release</a></li>
+    <li><a href="#supports">Supports</a></li>
+    <li><a href="#limitations">Limitations</a></li>
   </ul>
 </nav>
   </div>
 
 		</nav>
 		<main class="docs-content col-lg-11 col-xl-9">
-		<h1>Build and Tests</h1>
+		<h1>High Level API</h1>
 			<p class="lead"></p>
-			<h2 id="build">Build<a href="#build" class="anchor" aria-hidden="true">#</a> </h2>
-<p>The project requires Scala 2.12.12 or 2.13.3. To build the project locally:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git@github.com:d2a4u/meteor.git
-<span class="nb">cd</span> ./meteor
-sbt compile
-</code></pre></div><h2 id="tests">Tests<a href="#tests" class="anchor" aria-hidden="true">#</a> </h2>
-<h4 id="local">Local<a href="#local" class="anchor" aria-hidden="true">#</a> </h4>
-<p>Unit tests can be run locally by <code>sbt test</code>. Integration tests run against docker container of
-<a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.DownloadingAndRunning.html">DynamoDB Local</a>.
-Hence, you will need docker installed and then to run integration tests:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker-compose up -d <span class="c1"># make sure that the service is ready before running tests</span>
-sbt it:test
-</code></pre></div><p>A <code>docker-compose.yml</code> is provided at the root of the project.</p>
-<h4 id="github-actions">Github Actions<a href="#github-actions" class="anchor" aria-hidden="true">#</a> </h4>
-<p>All PRs and branches are built and tests using Github Actions using the same mechanism with
-<code>docker-compose</code>. The project is built and tests are run against both Scala 2.12 and 2.13.</p>
-<h2 id="release">Release<a href="#release" class="anchor" aria-hidden="true">#</a> </h2>
-<p>The project uses <a href="https://github.com/jvican/sbt-release-early">sbt-release-early plugin</a> to release
-artifacts to Sonatype repositories. Versioning is via git tags. Release process is automated via
-Github actions. Minor version is automatically incremented on PR merge. To release other version
-bump, add <code>#major</code> or <code>#patch</code> to commit message.</p>
+			<p>The actions API is considered low level because it is a 1-2-1 mapping to the Java AWS SDK calls.
+In contrast, high level API abstracts over DynamoDB tables which makes it simpler to work with.
+For example:</p>
+<p><strong>Low level API action:</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">meteor._</span>
+<span class="k">import</span> <span class="nn">cats.effect.IO</span>
+
+<span class="k">val</span> <span class="n">client</span><span class="k">:</span> <span class="kt">Client</span><span class="o">[</span><span class="kt">IO</span><span class="o">]</span> <span class="k">=</span> <span class="o">???</span>
+<span class="k">val</span> <span class="n">booksTable</span> <span class="k">=</span> <span class="nc">PartitionKeyTable</span><span class="o">[</span><span class="kt">Int</span><span class="o">](</span><span class="s">&#34;books-table&#34;</span><span class="o">,</span> <span class="nc">KeyDef</span><span class="o">[</span><span class="kt">Int</span><span class="o">](</span><span class="s">&#34;id&#34;</span><span class="o">,</span> <span class="nc">DynamoDbType</span><span class="o">.</span><span class="n">N</span><span class="o">))</span>
+<span class="k">val</span> <span class="n">lotr</span> <span class="k">=</span> <span class="nc">Book</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">&#34;The Lord of the Rings&#34;</span><span class="o">)</span>
+
+<span class="k">val</span> <span class="n">get</span> <span class="k">=</span>
+  <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="o">[</span><span class="kt">Int</span>, <span class="kt">Book</span><span class="o">](</span>
+    <span class="n">booksTable</span><span class="o">,</span>
+    <span class="mi">1</span><span class="o">,</span>
+    <span class="n">consistentRead</span> <span class="k">=</span> <span class="kc">false</span>
+  <span class="o">)</span>
+</code></pre></div><p><strong>High level API table:</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">import</span> <span class="nn">meteor._</span>
+<span class="k">import</span> <span class="nn">meteor.api.hi._</span>
+<span class="k">import</span> <span class="nn">cats.effect.IO</span>
+
+<span class="k">val</span> <span class="n">client</span><span class="k">:</span> <span class="kt">Client</span><span class="o">[</span><span class="kt">IO</span><span class="o">]</span> <span class="k">=</span> <span class="o">???</span>
+<span class="k">val</span> <span class="n">booksTable</span> <span class="k">=</span> <span class="nc">SimpleTable</span><span class="o">[</span><span class="kt">IO</span>, <span class="kt">Int</span><span class="o">](</span><span class="s">&#34;books-table&#34;</span><span class="o">,</span> <span class="nc">KeyDef</span><span class="o">[</span><span class="kt">Int</span><span class="o">](</span><span class="s">&#34;id&#34;</span><span class="o">,</span> <span class="nc">DynamoDbType</span><span class="o">.</span><span class="n">N</span><span class="o">),</span> <span class="n">client</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">lotr</span> <span class="k">=</span> <span class="nc">Book</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">&#34;The Lord of the Rings&#34;</span><span class="o">)</span>
+
+<span class="k">val</span> <span class="n">put</span> <span class="k">=</span> <span class="n">booksTable</span><span class="o">.</span><span class="n">get</span><span class="o">[</span><span class="kt">Book</span><span class="o">](</span><span class="mi">1</span><span class="o">,</span> <span class="n">consistentRead</span> <span class="k">=</span> <span class="kc">false</span><span class="o">)</span>
+</code></pre></div><p>The differences might not look like much, but there are several benefits that high level API
+provides.</p>
+<p>When using low level API actions, it can get confusing sometimes when there are several
+overloaded methods for the same actions to cater use cases for a table with a partition key or for
+a table with composite keys. The high level API removes this confusion by only provide the methods
+that are actionable on the table. It also bounds the key&rsquo;s type(s) to table&rsquo;s definition to reduce
+the number of type parameters required. Context bound of <code>F[_]</code> is now also on the method&rsquo;s level.</p>
+<h2 id="supports">Supports<a href="#supports" class="anchor" aria-hidden="true">#</a> </h2>
+<ul>
+<li><code>SimpleTable</code> represent a DynamoDB table which only has partition key index.</li>
+<li><code>CompositeTable</code> represent a DynamoDB table which has both partition key and sort key indexes.</li>
+<li><code>SimpleIndex</code> represent a secondary index on a partition key.</li>
+<li><code>SecondaryCompositeIndex</code> represent a secondary index on composite keys.</li>
+</ul>
+<h2 id="limitations">Limitations<a href="#limitations" class="anchor" aria-hidden="true">#</a> </h2>
+<p>Table actions and scan actions are not supported in high level API to keep them flexible.</p>
 
 			<div class="docs-navigation d-flex justify-content-between">
 	
-	<a href="https://d2a4u.github.io/meteor/docs/introduction/helloworld/">
+	<a href="https://d2a4u.github.io/meteor/docs/api/expression/">
 			<div class="card my-1">
 				<div class="card-body py-2">
-					&larr; Hello World
+					&larr; Expression
 				</div>
 			</div>
 		</a>
-	<a class="ml-auto" href="https://d2a4u.github.io/meteor/docs/api/expression/">
+	<a class="ml-auto" href="https://d2a4u.github.io/meteor/docs/api/itemactions/">
 			<div class="card my-1">
 				<div class="card-body py-2">
-					Expression &rarr;
+					Item Actions &rarr;
 				</div>
 			</div>
 		</a>

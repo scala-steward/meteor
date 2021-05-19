@@ -53,14 +53,14 @@ Expression( expression = &amp;#34;#pAt BETWEEN :from AND :to&amp;#34;, attribute
     </item>
     
     <item>
-      <title>Table Actions</title>
-      <link>https://d2a4u.github.io/meteor/docs/api/tableactions/</link>
-      <pubDate>Wed, 27 Jan 2021 00:17:07 +0000</pubDate>
+      <title>High Level API</title>
+      <link>https://d2a4u.github.io/meteor/docs/api/highlevel/</link>
+      <pubDate>Sat, 06 Mar 2021 07:43:39 +0000</pubDate>
       
-      <guid>https://d2a4u.github.io/meteor/docs/api/tableactions/</guid>
-      <description>Create Table creation returns F[Unit] where F[_] is semantically blocked (no actual JVM thread being blocked) until the table has been created and its status is available.
-import meteor._ val creation: F[Unit] = client.createPartitionKeyTable( &amp;#34;books-table&amp;#34;, KeyDef[Int](&amp;#34;id&amp;#34;, DynamoDbType.N), BillingMode.PAY_PER_REQUEST ) attributeDefinition is required only when there are secondary indexes on those attributes. For example, given the following secondary index:
-import software.amazon.awssdk.services.dynamodb.model._ val global2ndIndex = GlobalSecondaryIndex .builder() .indexName(&amp;#34;books-by-author&amp;#34;) .keySchema( KeySchemaElement.builder().attributeName(&amp;#34;author&amp;#34;).keyType(KeyType.HASH).build(), KeySchemaElement.builder().attributeName(&amp;#34;title&amp;#34;).keyType(KeyType.RANGE).build() ) .</description>
+      <guid>https://d2a4u.github.io/meteor/docs/api/highlevel/</guid>
+      <description>The actions API is considered low level because it is a 1-2-1 mapping to the Java AWS SDK calls. In contrast, high level API abstracts over DynamoDB tables which makes it simpler to work with. For example:
+Low level API action:
+import meteor._ import cats.effect.IO val client: Client[IO] = ??? val booksTable = PartitionKeyTable[Int](&amp;#34;books-table&amp;#34;, KeyDef[Int](&amp;#34;id&amp;#34;, DynamoDbType.N)) val lotr = Book(1, &amp;#34;The Lord of the Rings&amp;#34;) val get = client.get[Int, Book]( booksTable, 1, consistentRead = false ) High level API table:</description>
     </item>
     
     <item>
@@ -86,6 +86,17 @@ De-duplication DynamoDB batch write action has validation on performing multiple
     </item>
     
     <item>
+      <title>Table Actions</title>
+      <link>https://d2a4u.github.io/meteor/docs/api/tableactions/</link>
+      <pubDate>Wed, 27 Jan 2021 00:17:07 +0000</pubDate>
+      
+      <guid>https://d2a4u.github.io/meteor/docs/api/tableactions/</guid>
+      <description>Create Table creation returns F[Unit] where F[_] is semantically blocked (no actual JVM thread being blocked) until the table has been created and its status is available.
+import meteor._ val creation: F[Unit] = client.createPartitionKeyTable( &amp;#34;books-table&amp;#34;, KeyDef[Int](&amp;#34;id&amp;#34;, DynamoDbType.N), BillingMode.PAY_PER_REQUEST ) attributeDefinition is required only when there are secondary indexes on those attributes. For example, given the following secondary index:
+import software.amazon.awssdk.services.dynamodb.model._ val global2ndIndex = GlobalSecondaryIndex .builder() .indexName(&amp;#34;books-by-author&amp;#34;) .keySchema( KeySchemaElement.builder().attributeName(&amp;#34;author&amp;#34;).keyType(KeyType.HASH).build(), KeySchemaElement.builder().attributeName(&amp;#34;title&amp;#34;).keyType(KeyType.RANGE).build() ) .</description>
+    </item>
+    
+    <item>
       <title>meteor Codec</title>
       <link>https://d2a4u.github.io/meteor/docs/codec/meteor/</link>
       <pubDate>Tue, 26 Jan 2021 22:18:50 +0000</pubDate>
@@ -103,17 +114,6 @@ trait Encoder[A] { def write(a: A): AttributeValue } trait Decoder[A] { def read
       <guid>https://d2a4u.github.io/meteor/docs/codec/dynosaur/</guid>
       <description>The meteor-dynosaur module provides integration with Dynosaur library. It provides implicit conversion from Dynosaur&amp;rsquo;s schema to meteor&amp;rsquo;s codec. This is an experiment feature, hence, it is subjected to change.
 import meteor.dynosaur.formats.conversions._ import meteor.Codec val bookSchema: Schema[Book] = ... val bookCodec: Codec[Book] = implicitly[Codec[Book]] </description>
-    </item>
-    
-    <item>
-      <title>Scanamo Format</title>
-      <link>https://d2a4u.github.io/meteor/docs/codec/scanamo/</link>
-      <pubDate>Tue, 26 Jan 2021 22:19:00 +0000</pubDate>
-      
-      <guid>https://d2a4u.github.io/meteor/docs/codec/scanamo/</guid>
-      <description>The meteor-scanamo module provides integration with Scanamo format library. It provides implicit conversion from scanamo&amp;rsquo;s DynamoFormat to meteor&amp;rsquo;s codec.
-Note: The module uses scanamo-format&amp;rsquo;s version 1.0.0-M11 instead of latest because in my experience, this is the most stable version. however, because it is an older version when DynamoDB did not support empty String, the following scenario:
- Empty string: &amp;quot;&amp;quot; Optional none: None Optional some of empty string: Some(&amp;quot;&amp;quot;)  are all serialized to an AttributeValue of null.</description>
     </item>
     
   </channel>
