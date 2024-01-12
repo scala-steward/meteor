@@ -14,7 +14,7 @@
       
       <guid>https://d2a4u.github.io/meteor/docs/introduction/getstarted/</guid>
       <description>meteor is a wrapper around Java AWS SDK v2 library, provides higher level API over standard DynamoDB&amp;rsquo;s actions.
-Features  wraps AWS Java SDK V2 CRUD actions stream batch actions or scan table as fs2 Stream auto processes left over items auto remove duplication in batch actions support DynamoDB&amp;rsquo;s single table design provides codec as a simple abstraction and syntax on top of AttributeValue support multiple codec libraries including Dynosaur and Scanamo  Installation Add the following to your build.</description>
+Features  wraps AWS Java SDK V2 CRUD actions stream batch actions or scan table as fs2 Stream auto processes left over items auto remove duplication in batch actions support DynamoDB&amp;rsquo;s single table design provides codec as a simple abstraction and syntax on top of AttributeValue support Dynosaur codec library  Installation Add the following to your build.</description>
     </item>
     
     <item>
@@ -111,8 +111,8 @@ trait Encoder[A] { def write(a: A): AttributeValue } trait Decoder[A] { def read
       <pubDate>Tue, 26 Jan 2021 22:19:06 +0000</pubDate>
       
       <guid>https://d2a4u.github.io/meteor/docs/codec/dynosaur/</guid>
-      <description>The meteor-dynosaur module provides integration with Dynosaur library. It provides implicit conversion from Dynosaur&amp;rsquo;s schema to meteor&amp;rsquo;s codec. This is an experiment feature, hence, it is subjected to change.
-import meteor.dynosaur.formats.conversions._ import meteor.Codec val bookSchema: Schema[Book] = ... val bookCodec: Codec[Book] = implicitly[Codec[Book]] </description>
+      <description>The meteor-dynosaur module provides integration with Dynosaur library. It provides implicit construction from Dynosaur&amp;rsquo;s schema to meteor&amp;rsquo;s codec. This is an experiment feature, hence, it is subjected to change.
+import meteor.dynosaur.formats.conversions._ import meteor.codec.Codec implicit val bookSchema: Schema[Book] = ... val bookCodec: Codec[Book] = implicitly[Codec[Book]] </description>
     </item>
     
   </channel>

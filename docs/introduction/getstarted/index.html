@@ -17,14 +17,14 @@
 <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Get Started">
 <meta name="twitter:description" content="meteor is a wrapper around Java AWS SDK v2 library, provides higher level API over standard DynamoDB&rsquo;s actions.
-Features  wraps AWS Java SDK V2 CRUD actions stream batch actions or scan table as fs2 Stream auto processes left over items auto remove duplication in batch actions support DynamoDB&rsquo;s single table design provides codec as a simple abstraction and syntax on top of AttributeValue support multiple codec libraries including Dynosaur and Scanamo  Installation Add the following to your build.">
+Features  wraps AWS Java SDK V2 CRUD actions stream batch actions or scan table as fs2 Stream auto processes left over items auto remove duplication in batch actions support DynamoDB&rsquo;s single table design provides codec as a simple abstraction and syntax on top of AttributeValue support Dynosaur codec library  Installation Add the following to your build.">
 
 <meta name="twitter:site" content="@">
 <meta name="twitter:creator" content="@">
 
 <meta property="og:title" content="Get Started">
 <meta property="og:description" content="meteor is a wrapper around Java AWS SDK v2 library, provides higher level API over standard DynamoDB&rsquo;s actions.
-Features  wraps AWS Java SDK V2 CRUD actions stream batch actions or scan table as fs2 Stream auto processes left over items auto remove duplication in batch actions support DynamoDB&rsquo;s single table design provides codec as a simple abstraction and syntax on top of AttributeValue support multiple codec libraries including Dynosaur and Scanamo  Installation Add the following to your build.">
+Features  wraps AWS Java SDK V2 CRUD actions stream batch actions or scan table as fs2 Stream auto processes left over items auto remove duplication in batch actions support DynamoDB&rsquo;s single table design provides codec as a simple abstraction and syntax on top of AttributeValue support Dynosaur codec library  Installation Add the following to your build.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://d2a4u.github.io/meteor/docs/introduction/getstarted/">
 
@@ -116,7 +116,6 @@ Features  wraps AWS Java SDK V2 CRUD actions stream batch actions or scan table 
   <ul class="list-unstyled">
     <li><a class="docs-link" href="https://d2a4u.github.io/meteor/docs/codec/meteor/">meteor Codec</a></li>
     <li><a class="docs-link" href="https://d2a4u.github.io/meteor/docs/codec/dynosaur/">Dynosaur Schema</a></li>
-    <li><a class="docs-link" href="https://d2a4u.github.io/meteor/docs/codec/scanamo/">Scanamo Format</a></li>
     </ul>
   <h3>API</h3>
   <ul class="list-unstyled">
@@ -159,20 +158,14 @@ DynamoDB&rsquo;s actions.</p>
 <li>auto remove duplication in batch actions</li>
 <li>support DynamoDB&rsquo;s single table design</li>
 <li>provides codec as a simple abstraction and syntax on top of <code>AttributeValue</code></li>
-<li>support multiple codec libraries including <code>Dynosaur</code> and <code>Scanamo</code></li>
+<li>support <code>Dynosaur</code> codec library</li>
 </ul>
 <h2 id="installation">Installation<a href="#installation" class="anchor" aria-hidden="true">#</a> </h2>
 <p>Add the following to your <code>build.sbt</code>, see the badge on homepage for latest version. Supports Scala
 2.12 and 2.13.</p>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">&#34;io.github.d2a4u&#34;</span> <span class="o">%%</span> <span class="s">&#34;meteor-awssdk&#34;</span> <span class="o">%</span> <span class="s">&#34;LATEST_VERSION&#34;</span>
 </code></pre></div><h3 id="modules">Modules<a href="#modules" class="anchor" aria-hidden="true">#</a> </h3>
-<h4 id="scanamo-formathttpsgithubcomscanamoscanamo"><a href="https://github.com/scanamo/scanamo">Scanamo Format</a><a href="#scanamo-formathttpsgithubcomscanamoscanamo" class="anchor" aria-hidden="true">#</a> </h4>
-<p><strong>Note:</strong> Only version <code>1.0.0-M11</code> is supported because in my experience, this is the most stable version of
-<code>Scanamo</code>. However, because it is an older version when DynamoDB&rsquo;s did not support empty
-String, this version of <code>Scanamo</code> serializes these cases: <code>&quot;&quot;</code>, <code>None</code> and <code>Some(&quot;&quot;)</code> to Dynamo&rsquo;s
-<code>NULL</code>. This is problematic because once the value is written down, reading it back is difficult.</p>
-<div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">&#34;io.github.d2a4u&#34;</span> <span class="o">%%</span> <span class="s">&#34;meteor-scanamo&#34;</span> <span class="o">%</span> <span class="s">&#34;LATEST_VERSION&#34;</span>
-</code></pre></div><h4 id="dynosaur-codecshttpssystemfworgdynosaur"><a href="https://systemfw.org/dynosaur">Dynosaur Codecs</a><a href="#dynosaur-codecshttpssystemfworgdynosaur" class="anchor" aria-hidden="true">#</a> </h4>
+<h4 id="dynosaur-codecshttpssystemfworgdynosaur"><a href="https://systemfw.org/dynosaur">Dynosaur Codecs</a><a href="#dynosaur-codecshttpssystemfworgdynosaur" class="anchor" aria-hidden="true">#</a> </h4>
 <div class="highlight"><pre class="chroma"><code class="language-scala" data-lang="scala"><span class="n">libraryDependencies</span> <span class="o">+=</span> <span class="s">&#34;io.github.d2a4u&#34;</span> <span class="o">%%</span> <span class="s">&#34;meteor-dynosaur&#34;</span> <span class="o">%</span> <span class="s">&#34;LATEST_VERSION&#34;</span>
 </code></pre></div><h2 id="optimisation">Optimisation<a href="#optimisation" class="anchor" aria-hidden="true">#</a> </h2>
 <p><code>meteor</code> uses AWS SDK v2 <code>DynamoDbAsyncClient</code> under the hood to make calls to the underline Java
@@ -245,7 +238,7 @@ that can be used and tuned similarly. The official documentation can be found <a
 </footer>
     
     <script src="https://d2a4u.github.io/meteor/main.f6b484f556ad1f3bcf6061082139a2f21fa759f13930c39a25fe4a9f78f35e64122c2d86dffd56e67b292dabbda4095d8077194f196e0e348441c106a9f3d40e.js" integrity="sha512-9rSE9VatHzvPYGEIITmi8h&#43;nWfE5MMOaJf5Kn3jzXmQSLC2G3/1W5nspLau9pAldgHcZTxluDjSEQcEGqfPUDg==" crossorigin="anonymous" defer></script>
-  <script src="https://d2a4u.github.io/meteor/index.min.b527924427ca35b79648acb7e67011543ae95e4ba8c4ae8594a5d96ae7afe06ba2903878266794ff63cbc0c875970af6c59e77fe147dd30a09bceb2462ad318b.js" integrity="sha512-tSeSRCfKNbeWSKy35nARVDrpXkuoxK6FlKXZauev4GuikDh4JmeU/2PLwMh1lwr2xZ53/hR90woJvOskYq0xiw==" crossorigin="anonymous" defer></script>
+  <script src="https://d2a4u.github.io/meteor/index.min.e07e63392a8a29352f55c2802291998c28b6249a075faa1b224c2764a460b7abaa8c553d04c95402aa88fd020baa39ca76235542b5d053e47ce924d20551be88.js" integrity="sha512-4H5jOSqKKTUvVcKAIpGZjCi2JJoHX6obIkwnZKRgt6uqjFU9BMlUAqqI/QILqjnKdiNVQrXQU&#43;R86STSBVG&#43;iA==" crossorigin="anonymous" defer></script>
 
   </body>
 </html>
